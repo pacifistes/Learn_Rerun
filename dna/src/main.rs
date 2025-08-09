@@ -8,7 +8,8 @@ use rerun::{
 };
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let rec = rerun::RecordingStreamBuilder::new("rerun_example_dna_abacu").connect_grpc()?;
+    let rec = rerun::RecordingStreamBuilder::new("rerun_example_dna_abacu").save("dna.rrd")?;
+    // let rec = rerun::RecordingStreamBuilder::new("rerun_example_dna_abacu").connect_grpc()?;
     rec.set_duration_secs("stable_time", 0.0);
 
     const NUM_POINTS: usize = 100;
@@ -90,7 +91,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         rec.log(
             "dna/structure",
             &rerun::archetypes::Transform3D::from_rotation(rerun::RotationAxisAngle::new(
-                glam::Vec3::X,
+                glam::Vec3::Z,
                 rerun::Angle::from_radians(time / 4.0 * TAU),
             )),
         )?;
