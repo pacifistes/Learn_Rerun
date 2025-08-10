@@ -8,7 +8,8 @@ use rerun::{
 };
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let rec = rerun::RecordingStreamBuilder::new("rerun_example_dna_abacu").save("dna.rrd")?;
+    let rec = rerun::RecordingStreamBuilder::new("rerun_example_dna_abacus").spawn()?;
+    // let rec = rerun::RecordingStreamBuilder::new("rerun_example_dna_abacu").save("dna.rrd")?;
     // let rec = rerun::RecordingStreamBuilder::new("rerun_example_dna_abacu").connect_grpc()?;
     rec.set_duration_secs("stable_time", 0.0);
 
